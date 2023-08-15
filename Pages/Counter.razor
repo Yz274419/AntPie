@@ -1,0 +1,61 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<Pie Data=data1 Config="csConfig" JsConfig="@jsConfig" />
+
+@code{
+    public string jsConfig = @"{label: {content: ({ percent }) => `${(percent * 100).toFixed(0)}%`}}";
+
+    private readonly object[] data1 =
+    {
+        new
+        {
+            type = "Category One",
+            value = 27
+        },
+        new
+        {
+            type = "Category Two",
+            value = 25
+        },
+        new
+        {
+            type = "Category Three",
+            value = 18
+        },
+        new
+        {
+            type = "Category Four",
+            value = 15
+        },
+        new
+        {
+            type = "Category Five",
+            value = 10
+        },
+        new
+        {
+            type = "Other",
+            value = 5
+        }
+    };
+
+    PieConfig csConfig = new PieConfig()
+    {
+        Radius = 0.8,
+        AngleField = "value",
+        ColorField = "type",
+        Label = new PieLabelConfig()
+        {
+            Visible = true,
+            Type = "inner",
+            AutoRotate = false,
+            Style = new TextStyle()
+            {
+                TextAlign = TextStyle.TextAlignCenter,
+                FontSize = 21,
+            },
+        },
+    };
+}
